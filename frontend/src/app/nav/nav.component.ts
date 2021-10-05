@@ -16,6 +16,7 @@ export class NavComponent implements OnInit {
     // console.log(this.Nav.getNavCategories())
   }
 
+  async nav_click(){}
 
 
 

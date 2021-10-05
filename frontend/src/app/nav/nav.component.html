@@ -1,1 +1,15 @@
-{{nav_items}}
+<nav class="uk-container uk-navbar uk-light">
+    <div class="uk-navbar-left">
+        <ul class="uk-navbar-nav">
+            <li class="uk-active">
+                <a href="#">Torrent<strong>Website</strong></a>
+            </li>
+        </ul>
+    </div>
+    <div class="uk-navbar-right">
+        <ul class="uk-navbar-nav uk-visible@s">
+            <li *ngFor="let items of nav_items"><a class="uk-text-large" href="" (click)="nav_click()">{{items}}</a></li>
+        </ul>
+        <a href="#" class="uk-navbar-toggle uk-hidden@s" uk-navbar-toggle-icon uk-toggle="target: #sidenav"></a>
+    </div>
+</nav>
