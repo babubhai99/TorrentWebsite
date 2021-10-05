@@ -40,3 +40,9 @@ def information(request, movie, link):
     torrents = py1337x()
     info1 = torrents.info(torrentId = f'{link}')
     return Response(info1)
+
+@api_view(['GET'])
+def cat_sort(request, movie):
+    torrents = py1337x()
+    info1 = torrents.trending()
+    return Response(info1)
