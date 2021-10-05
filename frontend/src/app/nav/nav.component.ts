@@ -10,13 +10,16 @@ export class NavComponent implements OnInit {
 
   constructor(private Nav: NavService) { }
   nav_items: any;
+  selected_nav: any;
 
   async ngOnInit(){
     this.nav_items = await this.Nav.getNavCategories();
     // console.log(this.Nav.getNavCategories())
   }
 
-  async nav_click(){}
+  async nav_click(item: any){
+    this.selected_nav = item;
+  }
 
 
 
