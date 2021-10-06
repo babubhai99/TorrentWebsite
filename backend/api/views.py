@@ -1,9 +1,7 @@
-from django.http.response import Http404, HttpResponse
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from py1337x import py1337x
-import json
+from . import scraper
 
 # Create your views here.
 @api_view(['GET'])
@@ -24,25 +22,25 @@ def categories(request):
     return Response(info)
 
 @api_view(['GET'])
-def trending(request):
-    torrents = py1337x()
-    info1 = torrents.trending(week=True)
-    return Response(info1)
+def search(request, name, page):
+    return Response(scraper.py1337x().search(f'{name}', page=page))
 
 @api_view(['GET'])
-def index(request, movie):
-    torrents = py1337x()
-    info = torrents.search(f'{movie}')
-    return Response(info)
+def trending(request, category):
+    return Response(scraper.py1337x().trending(category=f'{category}'))
 
 @api_view(['GET'])
-def information(request, movie, link):
-    torrents = py1337x()
-    info1 = torrents.info(torrentId = f'{link}')
-    return Response(info1)
+def top(request, category):
+    return Response(scraper.py1337x().top(category=f'{category}'))
 
 @api_view(['GET'])
-def cat_sort(request, movie):
-    torrents = py1337x()
-    info1 = torrents.trending()
-    return Response(info1)
+def popular(request, category):
+    return Response(scraper.py1337x().popular(category=f'{category}'))
+
+@api_view(['GET'])
+def browse(request, category):
+    return Response(scraper.py1337x().browse(category=f'{category}'))
+
+@api_view(['GET'])
+def info(request, torid):
+    return Response(scraper.py1337x().info(torrentId=torid))
