@@ -1,7 +1,7 @@
 import requests
 import requests_cache
 from bs4 import BeautifulSoup
-import cloudscraper
+import cfscrape
 
 class Parser():
     def torrentParser(self, response, baseUrl, page=1):
@@ -118,7 +118,7 @@ class py1337x():
         category = category.upper() if category and category.lower() in ['xxx', 'tv'] else category.capitalize() if category else None
         url = f"{self.baseUrl}/{'sort-' if sortBy else ''}{'category-' if category else ''}search/{query}/{category+'/' if category else ''}{sortBy.lower()+'/' if sortBy else ''}{order.lower()+'/' if sortBy else ''}{page}/"
 
-        response = cloudscraper.create_scraper().get(url, headers=self.headers)
+        response = cfscrape.create_scraper().get(url, headers=self.headers)
         # response = self.requests.get(url, headers=self.headers)
         return self.parser.torrentParser(response, baseUrl=self.baseUrl, page=page)
 
@@ -126,7 +126,7 @@ class py1337x():
     def trending(self, category=None, week=False):
         url = f"{self.baseUrl}/trending{'-week' if week and not category else ''}{'/w/'+category.lower()+'/' if week and category else '/d/'+category.lower()+'/' if not week and category else ''}"
 
-        response = cloudscraper.create_scraper().get(url, headers=self.headers)
+        response = cfscrape.create_scraper().get(url, headers=self.headers)
         # response = self.requests.get(url, headers=self.headers)
         return self.parser.torrentParser(response, baseUrl=self.baseUrl)
 
@@ -135,7 +135,7 @@ class py1337x():
         category = 'applications' if category and category.lower() == 'apps' else 'television' if category and category.lower() == 'tv' else category.lower() if category else None
         url = f"{self.baseUrl}/top-100{'-'+category if category else ''}"
 
-        response = cloudscraper.create_scraper().get(url, headers=self.headers)
+        response = cfscrape.create_scraper().get(url, headers=self.headers)
         # response = self.requests.get(url, headers=self.headers)
         return self.parser.torrentParser(response, baseUrl=self.baseUrl)
 
@@ -143,7 +143,7 @@ class py1337x():
     def popular(self, category, week=False):
         url = f"{self.baseUrl}/popular-{category.lower()}{'-week' if week else ''}"
 
-        response = cloudscraper.create_scraper().get(url, headers=self.headers)
+        response = cfscrape.create_scraper().get(url, headers=self.headers)
         # response = self.requests.get(url, headers=self.headers)
         return self.parser.torrentParser(response, baseUrl=self.baseUrl)
 
@@ -152,7 +152,7 @@ class py1337x():
         category = category.upper() if category.lower() in ['xxx', 'tv'] else category.capitalize()
         url = f'{self.baseUrl}/cat/{category}/{page}/'
 
-        response = cloudscraper.create_scraper().get(url, headers=self.headers)
+        response = cfscrape.create_scraper().get(url, headers=self.headers)
         # response = self.requests.get(url, headers=self.headers)
         return self.parser.torrentParser(response, baseUrl=self.baseUrl, page=page)
 
@@ -165,7 +165,7 @@ class py1337x():
 
         link = f'{self.baseUrl}/torrent/{torrentId}/h9/' if torrentId else link
 
-        response = cloudscraper.create_scraper().get(link, headers=self.headers)
+        response = cfscrape.create_scraper().get(link, headers=self.headers)
         # response = self.requests.get(link, headers=self.headers)
         return self.parser.infoParser(response, baseUrl=self.baseUrl)
 
