@@ -1,11 +1,11 @@
 import requests
 import requests_cache
 from bs4 import BeautifulSoup
+import cloudscraper
 
 class Parser():
     def torrentParser(self, response, baseUrl, page=1):
         soup = BeautifulSoup(response.content, 'html.parser')
-        print(response.content)
         torrentList = soup.select('a[href*="/torrent/"]')
         seedersList = soup.select('td.coll-2')
         leechersList = soup.select('td.coll-3')
@@ -34,7 +34,6 @@ class Parser():
                 time = timeList[count].getText()
                 uploader = uploaderList[count].getText().strip()
                 uploaderLink = baseUrl+'/'+uploader+'/'
-                print(name)
                 results['items'].append({'name': name, 'torrentId': torrentId, 'link': link, 'seeders': seeders, 'leechers': leechers, 'size': size, 'time': time, 'uploader': uploader, 'uploaderLink': uploaderLink})
 
         return results
@@ -96,8 +95,10 @@ class Parser():
 
 class py1337x():
     parser = Parser()
+
     def __init__(self, proxy=None, cookie=None, cache=None, cacheTime=86400, backend='sqlite'):
-        self.baseUrl = f'https://www.{proxy}' if proxy else 'https://www.1337x.to'
+        self.baseUrl = f'https://www.{proxy}' if proxy else 'http://www.1337x.to'
+
         self.headers = {
             'user-agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:88.0) Gecko/20100101 Firefox/88.0',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
@@ -117,14 +118,16 @@ class py1337x():
         category = category.upper() if category and category.lower() in ['xxx', 'tv'] else category.capitalize() if category else None
         url = f"{self.baseUrl}/{'sort-' if sortBy else ''}{'category-' if category else ''}search/{query}/{category+'/' if category else ''}{sortBy.lower()+'/' if sortBy else ''}{order.lower()+'/' if sortBy else ''}{page}/"
 
-        response = self.requests.get(url, headers=self.headers)
+        response = cloudscraper.create_scraper().get(url, headers=self.headers)
+        # response = self.requests.get(url, headers=self.headers)
         return self.parser.torrentParser(response, baseUrl=self.baseUrl, page=page)
 
     #: Trending torrents
     def trending(self, category=None, week=False):
         url = f"{self.baseUrl}/trending{'-week' if week and not category else ''}{'/w/'+category.lower()+'/' if week and category else '/d/'+category.lower()+'/' if not week and category else ''}"
 
-        response = self.requests.get(url, headers=self.headers)
+        response = cloudscraper.create_scraper().get(url, headers=self.headers)
+        # response = self.requests.get(url, headers=self.headers)
         return self.parser.torrentParser(response, baseUrl=self.baseUrl)
 
     #: Top 100 torrents
@@ -132,14 +135,16 @@ class py1337x():
         category = 'applications' if category and category.lower() == 'apps' else 'television' if category and category.lower() == 'tv' else category.lower() if category else None
         url = f"{self.baseUrl}/top-100{'-'+category if category else ''}"
 
-        response = self.requests.get(url, headers=self.headers)
+        response = cloudscraper.create_scraper().get(url, headers=self.headers)
+        # response = self.requests.get(url, headers=self.headers)
         return self.parser.torrentParser(response, baseUrl=self.baseUrl)
 
     #: Popular torrents
     def popular(self, category, week=False):
         url = f"{self.baseUrl}/popular-{category.lower()}{'-week' if week else ''}"
 
-        response = self.requests.get(url, headers=self.headers)
+        response = cloudscraper.create_scraper().get(url, headers=self.headers)
+        # response = self.requests.get(url, headers=self.headers)
         return self.parser.torrentParser(response, baseUrl=self.baseUrl)
 
     #: Browse torrents by category type
@@ -147,7 +152,8 @@ class py1337x():
         category = category.upper() if category.lower() in ['xxx', 'tv'] else category.capitalize()
         url = f'{self.baseUrl}/cat/{category}/{page}/'
 
-        response = self.requests.get(url, headers=self.headers)
+        response = cloudscraper.create_scraper().get(url, headers=self.headers)
+        # response = self.requests.get(url, headers=self.headers)
         return self.parser.torrentParser(response, baseUrl=self.baseUrl, page=page)
 
     #: Info of torrent
@@ -158,6 +164,8 @@ class py1337x():
             raise TypeError('Got an unexpected argument: Pass either link or torrentId')
 
         link = f'{self.baseUrl}/torrent/{torrentId}/h9/' if torrentId else link
-        response = self.requests.get(link, headers=self.headers)
+
+        response = cloudscraper.create_scraper().get(link, headers=self.headers)
+        # response = self.requests.get(link, headers=self.headers)
         return self.parser.infoParser(response, baseUrl=self.baseUrl)
 
