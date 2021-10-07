@@ -18,9 +18,9 @@
 <div id="sidenav" uk-offcanvas="flip: true" class="uk-offcanvas">
     <div class="uk-offcanvas-bar">
         <ul class="uk-nav">
-            <li *ngFor="let items of nav_items"><a class="uk-text-large" [routerLink]="" (click)="nav_click(items)">{{items}}</a></li>
+            <li *ngFor="let items of nav_items"><a class="uk-text-large" [routerLink]="">{{items}}</a></li>
         </ul>
     </div>
 </div>
 
-<p>{{selected_nav}}</p>
+<p *ngFor="let items of selected_nav">{{items.name}}</p>

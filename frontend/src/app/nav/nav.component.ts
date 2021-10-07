@@ -14,11 +14,10 @@ export class NavComponent implements OnInit {
 
   async ngOnInit(){
     this.nav_items = await this.Nav.getNavCategories();
-    // console.log(this.Nav.getNavCategories())
   }
 
   async nav_click(item: any){
-    this.selected_nav = item;
+    this.selected_nav = await this.Nav.gettop(item);
   }
 
 
