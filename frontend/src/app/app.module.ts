@@ -6,11 +6,15 @@ import { AppComponent } from './app.component';
 import { NavService } from './service/nav.service';
 import { NavComponent } from './nav/nav.component';
 import { FormsModule } from '@angular/forms';
+import { FrontpageComponent } from './frontpage/frontpage.component';
+import { TorrentpageComponent } from './torrentpage/torrentpage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent
+    NavComponent,
+    FrontpageComponent,
+    TorrentpageComponent
   ],
   imports: [
     BrowserModule,
