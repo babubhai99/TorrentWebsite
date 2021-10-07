@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&family=Rubik:wght@300;400;500;700;800;900&display=swap');
+
+.uk-navbar-container{
+    background-color: #212529;
+}
+.uk-search{
+    border-bottom:1px solid white;
+    width: 75%;
+}
+.uk-navbar-item > .uk-search > .uk-search-icon-flip,.uk-search-input{
+    background-color: #212529;
+    color: #f8f9fa;
+}
+.uk-text-center{
+    font-family: 'Quicksand', Arial, sans-serif;
+    color:#F8F9FA;
+    align-items: center;
+    font-size: 3rem;
+}
+.uk-overflow-auto {
+    margin: 7%;
+}
+.uk-overflow-auto > .uk-table > thead > tr > th,td,.uk-text-center{
+    border:2px solid #f8f9fa ;
+    font-size:1rem;
+    font-family: 'Quicksand', Arial, sans-serif;
+    color:#F8F9FA;
+    text-decoration: none;
+}
+.uk-overflow-auto > .uk-table > tbody > tr > .uk-text-center > a{
+    text-decoration: none;
+    color: #f8f9fa;
+}
+.uk-overflow-auto > .uk-table > tbody > tr > .uk-text-center > a:hover{
+    color:;
+    text-decoration: underline;
+}
+.pagination > li > a,a > span{
+    color:#f8f9fa;
+    font-size: 1.5rem;
+    background-color:#212529;
+    border: none;
+}
+.container > .py-3 > .text-center{
+    color: #f8f9fa;
+    font-size: 1.1rem;
+}
