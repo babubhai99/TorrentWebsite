@@ -2,16 +2,13 @@
     <div class="uk-navbar-center">
 
         <div class="uk-navbar-item">
-            <form class="uk-search uk-search-navbar">
+            <form class="uk-search uk-search-navbar" (submit)="onquerySubmit(query)" >
                 <span class="uk-search-icon-flip" uk-search-icon></span>
-                <input class="uk-search-input" type="search" placeholder="Search Torrents">
+                <input class="uk-search-input" type="search" placeholder="{{searchholder}}" #query>
             </form>
         </div>
     </div>
 </nav>
-
-<!--<span class="uk-margin-small-right uk-align-center uk-text-center" uk-spinner="ratio: 3"
-    style="color: aliceblue;"></span>-->
 <div class="uk-overflow-auto">
     <table class="uk-table uk-table-small uk-table-divider">
         <thead>
@@ -25,45 +22,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class="uk-text-center"><a class="torrent" href="#">Free.Guy.2021.1080p.BluRay.H264.AAC-RARBG-[rarbg.to]</a></td>
-                <td class="uk-text-center"> 12-12-2012 </td>
-                <td class="uk-text-center"> 25.96 GB </td>
-                <td class="uk-text-center"> 23649 </td>
-                <td class="uk-text-center"> 62358 </td>
-                <td class="uk-text-center"> RISHI SHARMA </td>
-            </tr>
-            <tr>
-                <td class="uk-text-center"><a class="torrent" href="#">Free.Guy.2021.1080p.BluRay.H264.AAC-RARBG-[rarbg.to]</a></td>
-                <td class="uk-text-center"> 12-12-2012 </td>
-                <td class="uk-text-center"> 25.96 GB </td>
-                <td class="uk-text-center"> 23649 </td>
-                <td class="uk-text-center"> 62358 </td>
-                <td class="uk-text-center"> RISHI SHARMA </td>
-            </tr>
-            <tr>
-                <td class="uk-text-center"><a class="torrent" href="#">Free.Guy.2021.1080p.BluRay.H264.AAC-RARBG-[rarbg.to]</a></td>
-                <td class="uk-text-center"> 12-12-2012 </td>
-                <td class="uk-text-center"> 25.96 GB </td>
-                <td class="uk-text-center"> 23649 </td>
-                <td class="uk-text-center"> 62358 </td>
-                <td class="uk-text-center"> RISHI SHARMA </td>
-            </tr>
-            <tr>
-                <td class="uk-text-center"><a class="torrent" href="#">Free.Guy.2021.1080p.BluRay.H264.AAC-RARBG-[rarbg.to]</a></td>
-                <td class="uk-text-center"> 12-12-2012 </td>
-                <td class="uk-text-center"> 25.96 GB </td>
-                <td class="uk-text-center"> 23649 </td>
-                <td class="uk-text-center"> 62358 </td>
-                <td class="uk-text-center"> RISHI SHARMA </td>
-            </tr>
-            <tr>
-                <td class="uk-text-center"><a class="torrent" href="#">Free.Guy.2021.1080p.BluRay.H264.AAC-RARBG-[rarbg.to]</a></td>
-                <td class="uk-text-center"> 12-12-2012 </td>
-                <td class="uk-text-center"> 25.96 GB </td>
-                <td class="uk-text-center"> 23649 </td>
-                <td class="uk-text-center"> 62358 </td>
-                <td class="uk-text-center"> RISHI SHARMA </td>
+            <tr *ngFor="let item of data">
+                <td class="uk-text-center"><a class="torrent" href="#">{{item.name}}</a></td>
+                <td class="uk-text-center"> {{item.time}} </td>
+                <td class="uk-text-center"> {{item.size}}  </td>
+                <td class="uk-text-center"> {{item.seeders}}   </td>
+                <td class="uk-text-center"> {{item.leechers}}   </td>
+                <td class="uk-text-center"> {{item.uploader}}   </td>
             </tr>
         </tbody>
     </table>
@@ -75,8 +40,6 @@
       <li class="page-item"><a class="page-link" href="#">1</a></li>
       <li class="page-item"><a class="page-link" href="#">2</a></li>
       <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item"><a class="page-link" href="#">4</a></li>
-      <li class="page-item"><a class="page-link" href="#">5</a></li>
       <li class="page-item"><a class="page-link" href="#">></a></li>
     </ul>
   </nav>

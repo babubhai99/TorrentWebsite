@@ -8,12 +8,14 @@ import { NavService } from './service/nav.service';
 })
 export class AppComponent implements OnInit{
   title = 'frontend';
-
+  navSelect: any;
 
   constructor(private Nav: NavService){}
   async ngOnInit(){
   }
-
+  onNavClick(sel: any){
+    this.navSelect = sel;
+  }
 
 
 }

@@ -9,7 +9,7 @@
         </div>
         <div class="uk-navbar-right">
             <ul class="uk-navbar-nav uk-visible@m">
-                <li *ngFor="let items of nav_items"><a class="uk-text-large" [routerLink]="" (click)="nav_click(items)">{{items}}</a></li>
+                <li *ngFor="let items of nav_items"><a class="uk-text-large" [routerLink]="" (click)="onclick(items)">{{items}}</a></li>
             </ul>
             <a href="#" class="uk-navbar-toggle uk-hidden@m" uk-navbar-toggle-icon uk-toggle="target: #sidenav"></a>
         </div>
@@ -22,5 +22,3 @@
         </ul>
     </div>
 </div>
-
-<p *ngFor="let items of selected_nav" style="color: aliceblue;">{{items.name}}</p>

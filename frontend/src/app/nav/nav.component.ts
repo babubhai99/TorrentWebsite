@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NavService } from '../service/nav.service';
 
 @Component({
@@ -10,16 +10,14 @@ export class NavComponent implements OnInit {
 
   constructor(private Nav: NavService) { }
   nav_items: any;
-  selected_nav: any;
-
   async ngOnInit(){
-    this.nav_items = await this.Nav.getNavCategories();
+    this.nav_items = await this.Nav.loadNavigation();
   }
 
-  async nav_click(item: any){
-    this.selected_nav = await this.Nav.gettop(item);
-  }
 
+  onclick(item: any){
+    this.Nav.communicate(item);
+  }
 
 
 }

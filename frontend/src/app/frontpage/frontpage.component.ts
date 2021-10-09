@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { NavService } from '../service/nav.service';
 
 @Component({
   selector: 'app-frontpage',
@@ -6,10 +7,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./frontpage.component.css']
 })
 export class FrontpageComponent implements OnInit {
+  data: any = '';
+  searchholder: any = 'Search';
+  query: string = '';
+  constructor(private nav: NavService){}
 
-  constructor() { }
+  async ngOnInit(){
 
-  ngOnInit(): void {
+    this.data = this.nav.defaultitems('movies');
+
+    this.nav.data.subscribe(message=>{
+      this.data = message;
+      this.data = this.data.items;
+    },error => { throw error },)
+
+    this.nav.searchholder.subscribe(message => {
+      this.searchholder = "Searching "+message+"......"
+    })
+  }
+
+  async onquerySubmit(query: any){
+    this.data = await this.nav.search(query.value+'/1');
   }
 
 }

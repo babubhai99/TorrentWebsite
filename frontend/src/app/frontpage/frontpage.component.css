@@ -19,6 +19,7 @@
 }
 .uk-overflow-auto {
     margin: 7%;
+    overflow-y: scroll;
 }
 .uk-overflow-auto > .uk-table > thead > tr > th,td,.uk-text-center{
     border:2px solid #f8f9fa ;
@@ -32,7 +33,7 @@
     color: #f8f9fa;
 }
 .uk-overflow-auto > .uk-table > tbody > tr > .uk-text-center > a:hover{
-    color:;
+    /* color:; */
     text-decoration: underline;
 }
 .pagination > li > a,a > span{

@@ -9,8 +9,8 @@
 </head>
 
 <body>
-    <app-nav></app-nav>
-    <app-frontpage></app-frontpage>
+    <app-nav (navSelect)="onNavClick($event)"></app-nav>
+    <app-frontpage (navSelect)="navSelect"></app-frontpage>
 </body>
 
 </html>
