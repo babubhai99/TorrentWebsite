@@ -41,8 +41,25 @@
     font-size: 1.5rem;
     background-color:#212529;
     border: none;
+
 }
 .container > .py-3 > .text-center{
     color: #f8f9fa;
     font-size: 1.1rem;
+}
+
+.loader{
+    margin: 10rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.pagination{
+    display: flex;
+}
+.spinner-border{
+    color: #f8f9fa;
+    width: 90px;
+    height: 90px;
 }

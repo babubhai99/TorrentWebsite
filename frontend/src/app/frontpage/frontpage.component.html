@@ -1,6 +1,5 @@
 <nav class="uk-navbar-container" uk-navbar>
     <div class="uk-navbar-center">
-
         <div class="uk-navbar-item">
             <form class="uk-search uk-search-navbar" (submit)="onquerySubmit(query)" >
                 <span class="uk-search-icon-flip" uk-search-icon></span>
@@ -9,7 +8,12 @@
         </div>
     </div>
 </nav>
-<div class="uk-overflow-auto">
+<div class="loader" *ngIf='data === ""'>
+    <div class="spinner-border" role="status">
+        <span class="sr-only" style="color: white;">Loading...</span>
+    </div>
+</div>
+<div class="uk-overflow-auto" *ngIf='data != ""'>
     <table class="uk-table uk-table-small uk-table-divider">
         <thead>
             <tr>
@@ -21,30 +25,25 @@
                 <th class="uk-table-small  uk-text-center">Uploader</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody >
             <tr *ngFor="let item of data">
-                <td class="uk-text-center"><a class="torrent" href="#">{{item.name}}</a></td>
+                <td class="uk-text-center"><a class="torrent" routerLink="/info/{{item.torrentId}}">{{item.name}}</a></td>
                 <td class="uk-text-center"> {{item.time}} </td>
-                <td class="uk-text-center"> {{item.size}}  </td>
-                <td class="uk-text-center"> {{item.seeders}}   </td>
-                <td class="uk-text-center"> {{item.leechers}}   </td>
-                <td class="uk-text-center"> {{item.uploader}}   </td>
+                <td class="uk-text-center"> {{item.size}} </td>
+                <td class="uk-text-center"> {{item.seeders}} </td>
+                <td class="uk-text-center"> {{item.leechers}} </td>
+                <td class="uk-text-center"> {{item.uploader}} </td>
             </tr>
         </tbody>
     </table>
 </div>
-
-<nav aria-label="Page navigation example" class="nav justify-content-center">
-    <ul class="pagination">
-      <li class="page-item"><a class="page-link" href="#"><</a></li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item"><a class="page-link" href="#">></a></li>
+<nav aria-label="Page navigation example" class="nav justify-content-center" >
+    <ul class="pagination" *ngIf='data !== "" && query.value !== ""'>
+      <li class="page-item" *ngFor="let i of pagination"><a class="page-link" (click)="paginationFun(i, query)">{{i}}</a></li>
     </ul>
   </nav>
 <div class="container">
     <footer class="py-3 my-4">
-      <p class="text-center">© 2021 AceTor</p>
+      <p class="text-center" *ngIf='data !== ""'>© 2021 Ace_Tor</p>
     </footer>
-  </div>
+</div>

@@ -1,1 +1,6 @@
-<p>torrentpage works!</p>
+<div class="loader" *ngIf='data === ""'>
+    <div class="spinner-grow text-light loader" role="status">
+        <span class="sr-only" style="color: white;">Loading...</span>
+    </div>
+</div>
+<p *ngIf='data !== ""'>torrentpage works! <a (click)="goToLink(data.magnetLink)">Magnet</a></p>

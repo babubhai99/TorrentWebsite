@@ -6,7 +6,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 })
 export class NavService {
 
-  url: string = 'https://ordinary-moth-68.loca.lt';
+  url: string = 'https://red-fox-80.loca.lt';
 
   data = new Subject();
   searchholder = new Subject();
@@ -24,7 +24,6 @@ export class NavService {
   async communicate(msg: string){
     let info = await (await fetch(`${this.url}/api/top/${msg}`)).json()
     this.data.next(info);
-
     this.searchholder.next(this.capitalised(msg));
   }
 
@@ -36,6 +35,11 @@ export class NavService {
   async search(query: string){
     let result = await (await fetch(`${this.url}/api/search/${query}`)).json();
     return result.items;
+  }
+
+  async info(id: any){
+    let result = await (await fetch(`${this.url}/api/info/${id}`)).json();
+    return result;
   }
 
 }
