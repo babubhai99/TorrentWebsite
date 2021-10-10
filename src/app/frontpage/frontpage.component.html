@@ -1,0 +1,49 @@
+<nav class="uk-navbar-container" uk-navbar>
+    <div class="uk-navbar-center">
+        <div class="uk-navbar-item">
+            <form class="uk-search uk-search-navbar" (submit)="onquerySubmit(query)" >
+                <span class="uk-search-icon-flip" uk-search-icon></span>
+                <input class="uk-search-input" type="search" placeholder="{{searchholder}}" #query>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="loader" *ngIf='data === ""'>
+    <div class="spinner-border" role="status">
+        <span class="sr-only" style="color: white;">Loading...</span>
+    </div>
+</div>
+<div class="uk-overflow-auto" *ngIf='data != ""'>
+    <table class="uk-table uk-table-small uk-table-divider">
+        <thead>
+            <tr>
+                <th class="uk-table-expand uk-text-center">Torrent Name</th>
+                <th class="uk-table-small uk-text-center">Date Uploaded</th>
+                <th class="uk-table-small uk-text-center">Size</th>
+                <th class="uk-table-shrink uk-text-center">Seeders</th>
+                <th class="uk-table-shrink uk-text-center">Leechers</th>
+                <th class="uk-table-small  uk-text-center">Uploader</th>
+            </tr>
+        </thead>
+        <tbody >
+            <tr *ngFor="let item of data">
+                <td class="uk-text-center"><a class="torrent" routerLink="/info/{{item.torrentId}}">{{item.name}}</a></td>
+                <td class="uk-text-center"> {{item.time}} </td>
+                <td class="uk-text-center"> {{item.size}} </td>
+                <td class="uk-text-center"> {{item.seeders}} </td>
+                <td class="uk-text-center"> {{item.leechers}} </td>
+                <td class="uk-text-center"> {{item.uploader}} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<nav aria-label="Page navigation example" class="nav justify-content-center" >
+    <ul class="pagination" *ngIf='data !== "" && query.value !== ""'>
+      <li class="page-item" *ngFor="let i of pagination"><a class="page-link" (click)="paginationFun(i, query)">{{i}}</a></li>
+    </ul>
+  </nav>
+<div class="container">
+    <footer class="py-3 my-4">
+      <p class="text-center" *ngIf='data !== ""'>© 2021 Ace_Tor</p>
+    </footer>
+</div>
