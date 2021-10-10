@@ -8,13 +8,15 @@ import { NavComponent } from './nav/nav.component';
 import { FormsModule } from '@angular/forms';
 import { FrontpageComponent } from './frontpage/frontpage.component';
 import { TorrentpageComponent } from './torrentpage/torrentpage.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     FrontpageComponent,
-    TorrentpageComponent
+    TorrentpageComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
