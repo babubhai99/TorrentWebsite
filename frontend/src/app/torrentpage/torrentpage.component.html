@@ -3,25 +3,32 @@
         <span class="sr-only" style="color: white;">Loading...</span>
     </div>
 </div>
-<div id="center-card">
-    <div class="uk-card uk-card-default uk-child-width-1-2@s uk-margin uk-flex-middle uk-border-rounded"  *ngIf="data.name || data.description"
-        uk-grid>
-        <!-- <div class="uk-card-media-left uk-cover-container uk-flex-first uk-flex-stretch@s"> -->
-            <div class="img-size">
-                <img
-                    src="{{data.thumbnail}}" style="width: 50%; height: 50%;">
-            </div>
-        <!-- </div> -->
-        <div>
-            <div class="uk-card-body uk-width-1-1@l child-card uk-flex-last">
-                <h3 class="uk-card-title">{{data.name}}</h3>
-                <p>{{data.description}}</p>
-            </div>
+
+<div class="uk-card uk-card-default uk-child-width-1-2@s uk-margin uk-flex uk-flex-middle uk-flex-center@m "
+    *ngIf="data.name || data.description" uk-grid>
+    <div
+        class="uk-card-media-left uk-cover-container uk-flex-first uk-width-1-3@l uk-flex-top@s img-size">
+        <img src="{{data.thumbnail}}" style="width: 50%; height: 50%;">
+    </div>
+    <div class="uk-flex">
+        <div class="uk-card-body uk-width-1-1@l child-card uk-flex-last uk-flex-bottom@s tlh-des">
+            <h3 class="uk-card-title">{{data.name}}</h3>
+            <p>{{data.description}}</p>
         </div>
+
     </div>
 </div>
+
+<div class="uk-flex uk-flex-center magnet-button">
+    <button
+        class="uk-button uk-button-default uk-width-1-4@m uk-margin-small-bottom uk-border-rounded uk-child-width-1-2@s">Magnet
+        Download</button>
+</div>
+
+
+
 <div class="table-border uk-overflow-auto" *ngIf='data !== ""'>
-    <table class="uk-table uk-table-middle uk-table-divider main-table uk-border-rounded uk-table-hover ">
+    <table class="uk-table uk-table-middle uk-table-divider main-table uk-border-rounded uk-table-hover">
         <tbody>
             <tr>
                 <td class="heading">Name</td>
@@ -86,7 +93,6 @@
         </tbody>
     </table>
 </div>
-
 <div class="container">
     <footer class="py-3 my-4">
         <p class="text-center">© 2021 AceTor</p>
