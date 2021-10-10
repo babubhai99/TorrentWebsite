@@ -4,10 +4,9 @@ import { FrontpageComponent } from './frontpage/frontpage.component';
 import { TorrentpageComponent } from './torrentpage/torrentpage.component';
 
 const routes: Routes = [
-  {path: 'home', component: FrontpageComponent},
+  {path: '', component: FrontpageComponent},
   {path: 'info/:id', component: TorrentpageComponent},
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: '**', component: FrontpageComponent}
+  {path: '**', redirectTo: '/'}
 ];
 
 @NgModule({

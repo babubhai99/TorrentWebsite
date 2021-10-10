@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class NavService {
-  url: string = ' https://lucky-cheetah-92.loca.lt';
+  url: string = 'https://tall-pig-38.loca.lt';
 
   data = new Subject();
   searchholder = new Subject();
@@ -22,7 +22,7 @@ export class NavService {
   }
 
   async communicate(msg: string){
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
     this.data.next('');
     let info = await (await fetch(`${this.url}/api/top/${msg}`)).json()
     setTimeout(()=>{this.data.next(info);}, 1000)
