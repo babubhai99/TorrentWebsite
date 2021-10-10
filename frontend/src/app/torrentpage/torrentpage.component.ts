@@ -12,10 +12,10 @@ export class TorrentpageComponent implements OnInit {
   data: any = '';
   constructor(private route: ActivatedRoute, private nav: NavService) {
     this.id = this.route.snapshot.params.id;
-
   }
 
   async ngOnInit(){
+    this.data = '';
     this.data = await this.nav.info(this.id);
     console.log(this.data.name)
   }

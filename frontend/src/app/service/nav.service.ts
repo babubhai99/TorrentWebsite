@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NavService {
-
-  url: string = 'https://red-fox-80.loca.lt';
+  url: string = ' https://lucky-cheetah-92.loca.lt';
 
   data = new Subject();
   searchholder = new Subject();
-  constructor() { }
+  constructor(private router: Router) {  }
 
    capitalised(msg: string) {
     return msg.charAt(0).toUpperCase() + msg.slice(1);
@@ -22,8 +22,10 @@ export class NavService {
   }
 
   async communicate(msg: string){
+    this.router.navigate(['/home']);
+    this.data.next('');
     let info = await (await fetch(`${this.url}/api/top/${msg}`)).json()
-    this.data.next(info);
+    setTimeout(()=>{this.data.next(info);}, 1000)
     this.searchholder.next(this.capitalised(msg));
   }
 
@@ -41,5 +43,4 @@ export class NavService {
     let result = await (await fetch(`${this.url}/api/info/${id}`)).json();
     return result;
   }
-
 }

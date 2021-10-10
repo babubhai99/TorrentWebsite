@@ -1,5 +1,4 @@
-import { query } from '@angular/animations';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { NavService } from '../service/nav.service';
 
 @Component({
@@ -16,13 +15,17 @@ export class FrontpageComponent implements OnInit {
   constructor(private nav: NavService){}
 
   async ngOnInit(){
+
     this.data = await this.nav.defaultitems('movies');
-  
 
     this.nav.data.subscribe(message=>{
-      this.data = ''
-      this.data = message;
-      this.data = this.data.items;
+      if (message !== ''){
+        this.data = message;
+        this.data = this.data.items;
+      }
+      else{
+        this.data = '';
+      }
     },error => { throw error })
 
     this.nav.searchholder.subscribe(message => {
@@ -31,6 +34,13 @@ export class FrontpageComponent implements OnInit {
   }
 
   async onquerySubmit(query: any){
+
+    if (this.data_cache === query.value){
+      let cache = this.data;
+      this.data = ''
+      setTimeout(()=>{this.data = cache;}, 1000);
+    }
+
     if (this.data_cache !== query.value){
       this.data_cache = query.value;
       this.data = '';

@@ -1,95 +1,86 @@
 <div class="loader" *ngIf='data === ""'>
-    <div class="spinner-grow text-light loader" role="status">
+    <div class="spinner-border text-light loader" role="status">
         <span class="sr-only" style="color: white;">Loading...</span>
     </div>
 </div>
-<p *ngIf='data !== ""'>torrentpage works! <a (click)="goToLink(data.magnetLink)">Magnet</a></p>
-<div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin uk-flex-middle uk-border-rounded"
-    uk-grid>
-    <div class="uk-card-media-left uk-cover-container uk-width-1-4@l uk-flex-first uk-flex-stretch@s">
-        <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Narendra_Modi_2021.jpg/375px-Narendra_Modi_2021.jpg">
-    </div>
-    <div>
-        <div class="uk-card-body uk-width-1-1@l child-card uk-flex-last">
-            <h3 class="uk-card-title">Movie Name</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. Lorem ipsum
-                dolor sit, amet consectetur adipisicing elit. Blanditiis sequi enim earum placeat est sit nihil
-                molestias numquam amet, consequatur commodi cupiditate temporibus eius qui saepe in provident tenetur
-                sapiente. Voluptas, numquam quidem.</p>
+<div id="center-card">
+    <div class="uk-card uk-card-default uk-child-width-1-2@s uk-margin uk-flex-middle uk-border-rounded"  *ngIf="data.name || data.description"
+        uk-grid>
+        <!-- <div class="uk-card-media-left uk-cover-container uk-flex-first uk-flex-stretch@s"> -->
+            <div class="img-size">
+                <img
+                    src="{{data.thumbnail}}" style="width: 50%; height: 50%;">
+            </div>
+        <!-- </div> -->
+        <div>
+            <div class="uk-card-body uk-width-1-1@l child-card uk-flex-last">
+                <h3 class="uk-card-title">{{data.name}}</h3>
+                <p>{{data.description}}</p>
+            </div>
         </div>
     </div>
 </div>
-<div class="table-border">
-    <table class="uk-table uk-table-middle uk-table-divider main-table uk-border-rounded uk-table-hover">
+<div class="table-border uk-overflow-auto" *ngIf='data !== ""'>
+    <table class="uk-table uk-table-middle uk-table-divider main-table uk-border-rounded uk-table-hover ">
         <tbody>
             <tr>
                 <td class="heading">Name</td>
-                <td class="desinfo">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut</td>
-            </tr>
-            <tr>
-                <td class="heading">Description</td>
-                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore magna aliqua.</td>
+                <td class="desinfo">{{data.name}}</td>
             </tr>
             <tr>
                 <td class="heading">Category</td>
-                <td>Lorem ipsum dolor sit amet, c.</td>
+                <td>{{data.category}}</td>
             </tr>
             <tr>
                 <td class="heading">Type</td>
-                <td>Lorem ipsum dolor sit</td>
+                <td>{{data.type}}</td>
             </tr>
             <tr>
                 <td class="heading">Genre</td>
-                <td>Lorem ipsum dolor sit amet, </td>
+                <span class="genre">
+                    <td *ngFor="let gen of data.genre">{{gen}}</td>
+                </span>
             </tr>
             <tr>
                 <td class="heading">Language</td>
-                <td>Lorem ipsum dolor sit amet, </td>
+                <td>{{data.language}}</td>
             </tr>
             <tr>
                 <td class="heading">Uploader</td>
-                <td>Lorem ipsum dolor sit amet,.</td>
+                <td>{{data.uploader}}</td>
             </tr>
             <tr>
                 <td class="heading">Size</td>
-                <td>Lorem </td>
+                <td>{{data.size}}</td>
             </tr>
             <tr>
                 <td class="heading">Downloads</td>
-                <td>Lorem ipsum </td>
+                <td>{{data.downloads}}</td>
             </tr>
             <tr>
                 <td class="heading">Last Checked</td>
-                <td>Lorem ipsum dolor </td>
+                <td>{{data.lastChecked}}</td>
             </tr>
             <tr>
                 <td class="heading">Upload Date</td>
-                <td>Lorem ipsum dolor</td>
+                <td>{{data.uploadDate}}</td>
             </tr>
             <tr>
                 <td class="heading">Seeders</td>
-                <td>Lorem ipsum </td>
+                <td>{{data.seeders}}</td>
             </tr>
             <tr>
                 <td class="heading">Leechers</td>
-                <td>Lorem ipsum .</td>
+                <td>{{data.leechers}}</td>
             </tr>
             <tr>
                 <td class="heading">InfoHash</td>
-                <td>Lorem ipsum dolor sit </td>
+                <td>{{data.infoHash}}</td>
             </tr>
             <tr>
                 <td class="heading">Images</td>
-                <td class="img-flex"><img
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Narendra_Modi_2021.jpg/375px-Narendra_Modi_2021.jpg"><img
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Narendra_Modi_2021.jpg/375px-Narendra_Modi_2021.jpg"><img
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Narendra_Modi_2021.jpg/375px-Narendra_Modi_2021.jpg"><img
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Narendra_Modi_2021.jpg/375px-Narendra_Modi_2021.jpg"><img
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Narendra_Modi_2021.jpg/375px-Narendra_Modi_2021.jpg">
+                <td class="img-flex">
+                    <img *ngFor="let i of data.images" src="{{i}}">
                 </td>
             </tr>
         </tbody>
