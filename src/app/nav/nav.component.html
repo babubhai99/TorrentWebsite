@@ -1,0 +1,24 @@
+<header>
+    <nav class="uk-navbar uk-light">
+        <div class="uk-navbar-left">
+            <ul class="uk-navbar-nav">
+                <li class="uk-active">
+                    <a href="/"><strong>ACETOR</strong></a>
+                </li>
+            </ul>
+        </div>
+        <div class="uk-navbar-right">
+            <ul class="uk-navbar-nav uk-visible@m">
+                <li *ngFor="let items of nav_items"><a class="uk-text-large" [routerLink]="" (click)="onclick(items)">{{items}}</a></li>
+            </ul>
+            <a href="#" class="uk-navbar-toggle uk-hidden@m" uk-navbar-toggle-icon uk-toggle="target: #sidenav"></a>
+        </div>
+    </nav>
+</header>
+<div id="sidenav" uk-offcanvas="flip: true" class="uk-offcanvas">
+    <div class="uk-offcanvas-bar">
+        <ul class="uk-nav">
+            <li *ngFor="let items of nav_items"><a class="uk-text-large" [routerLink]="['/']">{{items}}</a></li>
+        </ul>
+    </div>
+</div>
