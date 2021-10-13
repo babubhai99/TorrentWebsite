@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class NavService {
-  url: string = 'https://brown-cheetah-51.loca.lt';
+  url: string = 'https://friendly-warthog-78.loca.lt';
 
   data = new Subject();
   searchholder = new Subject();
